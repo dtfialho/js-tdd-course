@@ -4,7 +4,8 @@
   "description": "Nossa biblioteca do curso de JS com TDD na prática.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src/*.js"
   },
   "repository": {
     "type": "git",
@@ -22,11 +23,8 @@
   },
   "homepage": "https://github.com/dtfialho/js-tdd-course#readme",
   "devDependencies": {
-    "eslint": "^4.3.0",
-    "eslint-config-airbnb": "^15.1.0",
+    "eslint": "^4.0.0",
     "eslint-config-airbnb-base": "^11.3.1",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "^7.1.0"
+    "eslint-plugin-import": "^2.7.0"
   }
 }
