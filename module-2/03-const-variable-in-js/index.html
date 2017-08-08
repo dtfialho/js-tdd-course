@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03 - const Variable in JS</title>
+</head>
+<body>
+	<script>
+		const secretNumber = 28;
+
+		const me = {
+			name: 'Diego',
+			age: 53
+		};
+
+		Object.freeze(me);
+
+		me.age = 27;
+
+		console.log(me);
+	</script>
+</body>
+</html>
