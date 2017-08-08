@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>24 - Promises Example</title>
+</head>
+<body>
+	<script>
+		var posts = fetch('https://willianjusten.com.br/search.json');
+
+		posts
+			.then(data => data.json())
+			.then(data => {
+				throw new Error('Deu ruim');
+			})
+			.catch(err => console.error(err));
+	</script>
+</body>
+</html>
