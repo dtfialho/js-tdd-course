@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>17 - Introduction to Destructuring</title>
+</head>
+<body>
+	<script>
+		const data = {
+			name: 'Diego',
+			surname: 'Teixeira',
+			age: 27,
+			blog: 'http://diegotfialho.com.br',
+			social: {
+				github: 'dtfialho',
+				gmail: 'diego.tfialho'
+			}
+		};
+
+		const { name, surname } = data;
+		console.log(name);
+		console.log(surname);
+
+		const { github, gmail } = data.social;
+		console.log(github);
+		console.log(gmail);
+
+		const { github: gb } = data.social;
+		console.log(gb);
+
+		const { city = 'Petrópolis' } = data;
+		console.log(city);
+	</script>
+</body>
+</html>
