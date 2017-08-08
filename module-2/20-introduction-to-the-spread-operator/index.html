@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>20 - Introduction to the Spread Operator</title>
+</head>
+<body>
+	<script>
+		let front = [ 'react', 'vue', 'angular' ];
+		let back = [ 'python', 'ruby', 'nodejs' ];
+
+		console.log(...'Diego');
+		console.log(...front);
+		console.log(...back);
+
+		let fullStack = [ ...front, 'RxJS', ...back ];
+		console.log(fullStack);
+	</script>
+</body>
+</html>
