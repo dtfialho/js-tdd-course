@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>28 - Extending an Existing Class</title>
+</head>
+<body>
+	<script>
+		class Animal {
+			constructor(name) {
+				this.name = name;
+			}
+
+			hello() {
+				return `I'm ${this.name}!`;
+			}
+		}
+
+		const elephant = new Animal('Dumbo');
+
+		class Dog extends Animal {
+			constructor(name, sound) {
+				super(name);
+				this.sound = sound;
+			}
+
+			bark() {
+				return `${this.sound} I'm ${this.name}!`;
+			}
+		}
+
+		const jake = new Dog('Jake');
+
+		const dog = new Dog('Jake', 'Woof');
+	</script>
+</body>
+</html>
