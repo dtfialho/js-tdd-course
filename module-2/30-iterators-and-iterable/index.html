@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>30 - Iterators and Iterable</title>
+</head>
+<body>
+	<script>
+		let txt = 'Ireland'; // iterable
+		let it = txt[Symbol.iterator](); //iterator
+
+		console.log(it.next());
+		console.log(it.next());
+		console.log(it.next());
+		console.log(it.next());
+		console.log(it.next());
+		console.log(it.next());
+		console.log(it.next());
+		console.log(it.next());
+
+		for( letter of txt ) {
+			console.log(letter);
+			if(letter === 'a') break;
+		}
+	</script>
+</body>
+</html>
