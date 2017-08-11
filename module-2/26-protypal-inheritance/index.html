@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>26 - Protypal Inheritance</title>
+</head>
+<body>
+	<script>
+		function Animal(kind, sound) {
+			this.kind = kind;
+			this.sound = sound;
+		}
+
+		Animal.prototype.hello = function() {
+			console.log(`${this.sound} Hello i'm a ${this.kind}!`);
+		};
+
+		const dog = new Animal('dog', 'woof');
+		const cat = new Animal('cat', 'meow');
+	</script>
+</body>
+</html>
