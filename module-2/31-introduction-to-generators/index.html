@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>31 - Introduction to Generators</title>
+</head>
+<body>
+	<script>
+		function* genNames() {
+			console.log('First name');
+			yield 'Diego';
+
+			console.log('Second name');
+			yield 'Willian';
+
+			console.log('Third name');
+			yield 'Guilherme';
+		}
+
+		const names = genNames();
+
+		console.log(names.next());
+		console.log(names.next());
+		console.log(names.next());
+	</script>
+</body>
+</html>
