@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>34 - Introduction to Set</title>
+</head>
+<body>
+	<script>
+		let mySet = new Set(['Diego', 'Willian', 'Guilherme']);
+
+		mySet.add('Diogo');
+		mySet.add('Diogo');
+		mySet.add('Diogo');
+		mySet.add('Diego');
+
+		mySet.delete('Diego');
+
+		console.log(mySet.has('Diego'));
+		console.log(mySet.has('Diogo'));
+
+		console.log(mySet[1]);
+
+		let it = mySet.values();
+
+		console.log(it.next());
+
+		for(name of it) {
+			console.log(name);
+		}
+	</script>
+</body>
+</html>
