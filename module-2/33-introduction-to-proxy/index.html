@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>33 - Introduction to Proxy</title>
+</head>
+<body>
+	<script>
+		let obj = {
+			name: 'Diego',
+			age: 27
+		};
+
+		let proxy = new Proxy(obj, {
+			get(target, name) {
+				console.log('Someone is asking for the name');
+				return target[name];
+			},
+			set(target, name, value) {
+				console.log('Someone is trying to change the name');
+				target[name] = value;
+			}
+		});
+	</script>
+</body>
+</html>
