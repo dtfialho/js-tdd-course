@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "./node_modules/.bin/webpack --colors --progress",
-    "watch": "npm run build -- --watch"
+    "watch": "npm run build -- --watch",
+    "server": "./node_modules/.bin/webpack-dev-server --inline --open"
   },
   "keywords": [],
   "author": "Diego T. Fialho <diego.tfialho@gmail.com>",
@@ -16,7 +17,8 @@
     "babel-loader": "^7.1.1",
     "babel-preset-es2015-native-modules": "^6.9.4",
     "ramda": "^0.24.1",
-    "webpack": "^2.0.0-beta"
+    "webpack": "^3.5.5",
+    "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
     "react": "^15.6.1",
