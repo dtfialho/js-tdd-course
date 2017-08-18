@@ -1,21 +1,25 @@
 describe('Main', function() {
-  context('Will not be executed', function() {
-    it('It will pass', function() {
-
-    });
+  before(function() {
+    console.log('before');
   });
 
-  context.only('Will be executed', function() {
-    it.skip('Not this one', function() {
-
-    });
-
-    it('Should not pass', function() {
-      throw new Error('You shall not pass!');
-    });
-
-    it('Should pass', function() {
-
-    });
+  beforeEach(function() {
+    console.log('beforeEach');
   })
+
+  after(function() {
+    console.log('after');
+  });
+
+  afterEach(function() {
+    console.log('afterEach');
+  });
+
+  it('test 1', function() {
+    console.log('test 1');
+  });
+
+  it('test 2', function() {
+    console.log('test 2');
+  });
 });
