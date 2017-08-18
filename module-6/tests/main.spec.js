@@ -28,4 +28,12 @@ describe('Spotify wrapper', () => {
 
   });
 
+  describe('Generic search', () => {
+
+    it('should call fetch function', () => {
+      const artists = search();
+    });
+
+  });
+
 });
