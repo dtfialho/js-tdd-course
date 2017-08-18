@@ -42,6 +42,17 @@ describe('Spotify wrapper', () => {
       const artists = search();
 
       expect(fetchedStub).to.have.been.calledOnce;
+      fetchedStub.restore();
+    });
+
+    it('should receive the correct url to fetch', () => {
+      const fetchedStub = sinon.stub(global, 'fetch');
+      const artists = search('AC/DC', 'artist');
+
+      expect(fetchedStub).to.have.been.calledWith('https://api.spotify.com/v1/search?q=AC/DC&type=artist');
+
+      const albuns = search('AC/DC', 'album');
+      expect(fetchedStub).to.have.been.calledWith('https://api.spotify.com/v1/search?q=AC/DC&type=album');
     });
 
   });
