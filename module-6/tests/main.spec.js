@@ -13,6 +13,18 @@ global.fetch = require('node-fetch');
 
 describe('Spotify wrapper', () => {
 
+  let fetchedStub;
+  let promise;
+
+  beforeEach(() => {
+    fetchedStub = sinon.stub(global, 'fetch');
+    promise = fetchedStub.returnsPromise();
+  });
+
+  afterEach(() => {
+    fetchedStub.restore();
+  });
+
   describe('smoke tests', () => {
 
     it('should exist the search method', () => {
@@ -38,23 +50,6 @@ describe('Spotify wrapper', () => {
   });
 
   describe('Generic search', () => {
-    let fetchedStub;
-    let promise;
-
-    beforeEach(() => {
-      fetchedStub = sinon.stub(global, 'fetch');
-      promise = fetchedStub.returnsPromise();
-    });
-
-    afterEach(() => {
-      fetchedStub.restore();
-    });
-
-    it('should call fetch function', () => {
-      const artists = search();
-
-      expect(fetchedStub).to.have.been.calledOnce;
-    });
 
     it('should receive the correct url to fetch', () => {
       context('passing one type', () => {
@@ -78,6 +73,62 @@ describe('Spotify wrapper', () => {
       const artists = search('AC/DC', 'artist');
 
       expect(artists.resolveValue).to.be.eql({ body: 'json' });
+    });
+
+  });
+
+  describe('searchArtists', () => {
+
+    it('should call fetch function', () => {
+      const artists = searchArtists('AC/DC');
+      expect(fetchedStub).to.have.been.calledOnce;
+    });
+
+    it('should call fetch with the correct url', () => {
+      const artists = searchArtists('AC/DC');
+      expect(fetchedStub).to.have.been.calledWith('https://api.spotify.com/v1/search?q=AC/DC&type=artist');
+    });
+
+  });
+
+  describe('searchAlbums', () => {
+
+    it('should call fetch function', () => {
+      const artists = searchAlbums('AC/DC');
+      expect(fetchedStub).to.have.been.calledOnce;
+    });
+
+    it('should call fetch with the correct url', () => {
+      const artists = searchAlbums('AC/DC');
+      expect(fetchedStub).to.have.been.calledWith('https://api.spotify.com/v1/search?q=AC/DC&type=album');
+    });
+
+  });
+
+  describe('searchTracks', () => {
+
+    it('should call fetch function', () => {
+      const artists = searchTracks('AC/DC');
+      expect(fetchedStub).to.have.been.calledOnce;
+    });
+
+    it('should call fetch with the correct url', () => {
+      const artists = searchTracks('AC/DC');
+      expect(fetchedStub).to.have.been.calledWith('https://api.spotify.com/v1/search?q=AC/DC&type=track');
+    });
+
+  });
+
+  describe('searchPlaylists', () => {
+
+    it('should call fetch function', () => {
+      const artists = searchPlaylists('AC/DC');
+      expect(fetchedStub).to.have.been.calledOnce;
+    });
+
+    it('should call fetch with the correct url', () => {
+      const artists = searchPlaylists('AC/DC');
+      expect(fetchedStub).to.have.been.calledWith('https://api.spotify.com/v1/search?q=AC/DC&type=playlist');
     });
 
   });
