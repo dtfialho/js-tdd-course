@@ -39,9 +39,11 @@ describe('Spotify wrapper', () => {
 
   describe('Generic search', () => {
     let fetchedStub;
+    let promise;
 
     beforeEach(() => {
       fetchedStub = sinon.stub(global, 'fetch');
+      promise = fetchedStub.returnsPromise();
     });
 
     afterEach(() => {
@@ -69,6 +71,13 @@ describe('Spotify wrapper', () => {
 
         expect(fetchedStub).to.have.been.calledWith('https://api.spotify.com/v1/search?q=AC/DC&type=artist,album');
       });
+    });
+
+    it('should return the JSON data from the promise', () => {
+      promise.resolves({ body: 'json' });
+      const artists = search('AC/DC', 'artist');
+
+      expect(artists.resolveValue).to.be.eql({ body: 'json' });
     });
 
   });
