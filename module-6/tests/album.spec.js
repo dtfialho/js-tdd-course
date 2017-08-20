@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import sinonStubPromise from 'sinon-stub-promise';
 
-import { getAlbum, getAlbumTracks } from '../src/album';
+import { getAlbum, getAlbums, getAlbumTracks } from '../src/album';
 
 sinonStubPromise(sinon);
 chai.use(sinonChai);
@@ -56,6 +56,48 @@ describe('Album', () => {
       const album = getAlbum('idGeradoPeLoSpoTiFy');
 
       expect(album.resolveValue).to.be.eql({ album: 'nome' });
+    });
+
+  });
+
+  describe('getAlbums', () => {
+
+    it('should cal fetch method', () => {
+      const album = getAlbums();
+      expect(stubedFetch).to.have.been.calledOnce;
+    });
+
+    it('should call fetch with the correct url', () => {
+      const albums = getAlbums(['idGeradoPeLoSpoTiFy', 'outroIdGeradoPeLoSpoTiFy']);
+      expect(stubedFetch).to.have.been.calledWith('https://api.spotify.com/v1/albums/?ids=idGeradoPeLoSpoTiFy,outroIdGeradoPeLoSpoTiFy');
+    });
+
+    it('should return the correct data from the promise', () => {
+      promise.resolves({ albums: ['nome1','nome2'] });
+      const albums = getAlbums(['idGeradoPeLoSpoTiFy', 'outroIdGeradoPeLoSpoTiFy']);
+
+      expect(albums.resolveValue).to.be.eql({ albums: ['nome1','nome2'] });
+    });
+
+  });
+
+  describe('getAlbumTracks', () => {
+
+    it('should cal fetch method', () => {
+      const tracks = getAlbumTracks();
+      expect(stubedFetch).to.have.been.calledOnce;
+    });
+
+    it('should call fetch with the correct url', () => {
+      const tracks = getAlbumTracks('idGeradoPeLoSpoTiFy');
+      expect(stubedFetch).to.have.been.calledWith('https://api.spotify.com/v1/albums/idGeradoPeLoSpoTiFy/tracks');
+    });
+
+    it('should return the correct data from the promise', () => {
+      promise.resolves({ tracks: ['nome1','nome2'] });
+      const tracks = getAlbumTracks('idGeradoPeLoSpoTiFy');
+
+      expect(tracks.resolveValue).to.be.eql({ tracks: ['nome1','nome2'] });
     });
 
   });
