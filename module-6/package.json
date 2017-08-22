@@ -1,8 +1,8 @@
 {
-  "name": "js-tdd-course",
+  "name": "spotify-wrapper",
   "version": "1.0.0",
   "description": "Nossa biblioteca do curso de JS com TDD na prática.",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "clear": "rimraf lib",
     "build": "./node_modules/.bin/babel --out-dir lib src",
@@ -18,6 +18,10 @@
     "lint": "./node_modules/.bin/eslint src/*.js",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
+  "files": [
+    "dist",
+    "lib"
+  ],
   "nyc": {
     "reporter": [
       "text",
