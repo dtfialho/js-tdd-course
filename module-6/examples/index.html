@@ -7,9 +7,12 @@
 <body>
   <div id="albums"></div>
 
-  <script src="../dist/spotify-wrapper.umd.js"></script>
+  <script src="../dist/spotify-wrapper.umd.min.js"></script>
   <script>
-    const albums = spotifyWrapper.searchAlbums('AC/DC');
+    const spotify = new spotifyWrapper({
+      token: 'BQBvBVXrpzikc4ccHdx0w1ZTK_kMTTlbhRUXIwGs_lvo2CCBF23qE_jcGXaQNFWVmy2T2ydVdmUDyh9gytkxS2tW4dE83bU-R67Cb0I90tXTYkwrC2Wf_2OX44ebD51PSAKG4ePvuGZTVKQO'
+    });
+    const albums = spotify.search.albums('AC/DC');
     const albumsEl = document.getElementById('albums');
 
     albums.then(data => {
