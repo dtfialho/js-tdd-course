@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import sinonStubPromise from 'sinon-stub-promise';
 
-import { getAlbum, getAlbums, getAlbumTracks } from '../src/album';
+import SpotifyWrapper from '../src';
 
 sinonStubPromise(sinon);
 chai.use(sinonChai);
@@ -14,8 +14,13 @@ describe('Album', () => {
 
   let stubedFetch;
   let promise;
+  let spotify;
 
   beforeEach(() => {
+    spotify = new SpotifyWrapper({
+      token: 'lorem',
+    });
+
     stubedFetch = sinon.stub(global, 'fetch');
     promise = stubedFetch.returnsPromise();
   });
@@ -27,11 +32,11 @@ describe('Album', () => {
   describe('smoke tests', () => {
 
     it('should have getAlbum method', () => {
-      expect(getAlbum).to.exist;
+      expect(spotify.album.getAlbum).to.exist;
     });
 
-    it('should have getAlbumTracks method', () => {
-      expect(getAlbumTracks).to.exist;
+    it('should have getTracks method', () => {
+      expect(spotify.album.getTracks).to.exist;
     });
 
   });
@@ -39,21 +44,21 @@ describe('Album', () => {
   describe('getAlbum', () => {
 
     it('should cal fetch method', () => {
-      const album = getAlbum();
+      const album = spotify.album.getAlbum();
       expect(stubedFetch).to.have.been.calledOnce;
     });
 
     it('should call fetch with the correct url', () => {
-      const album = getAlbum('idGeradoPeLoSpoTiFy');
+      const album = spotify.album.getAlbum('idGeradoPeLoSpoTiFy');
       expect(stubedFetch).to.have.been.calledWith('https://api.spotify.com/v1/albums/idGeradoPeLoSpoTiFy');
 
-      const album2 = getAlbum('outroIdGeradoPeLoSpoTiFy');
+      const album2 = spotify.album.getAlbum('outroIdGeradoPeLoSpoTiFy');
       expect(stubedFetch).to.have.been.calledWith('https://api.spotify.com/v1/albums/outroIdGeradoPeLoSpoTiFy');
     });
 
     it('should return the correct data from the promise', () => {
       promise.resolves({ album: 'nome' });
-      const album = getAlbum('idGeradoPeLoSpoTiFy');
+      const album = spotify.album.getAlbum('idGeradoPeLoSpoTiFy');
 
       expect(album.resolveValue).to.be.eql({ album: 'nome' });
     });
@@ -63,39 +68,39 @@ describe('Album', () => {
   describe('getAlbums', () => {
 
     it('should cal fetch method', () => {
-      const album = getAlbums();
+      const album = spotify.album.getAlbums();
       expect(stubedFetch).to.have.been.calledOnce;
     });
 
     it('should call fetch with the correct url', () => {
-      const albums = getAlbums(['idGeradoPeLoSpoTiFy', 'outroIdGeradoPeLoSpoTiFy']);
+      const albums = spotify.album.getAlbums(['idGeradoPeLoSpoTiFy', 'outroIdGeradoPeLoSpoTiFy']);
       expect(stubedFetch).to.have.been.calledWith('https://api.spotify.com/v1/albums/?ids=idGeradoPeLoSpoTiFy,outroIdGeradoPeLoSpoTiFy');
     });
 
     it('should return the correct data from the promise', () => {
       promise.resolves({ albums: ['nome1','nome2'] });
-      const albums = getAlbums(['idGeradoPeLoSpoTiFy', 'outroIdGeradoPeLoSpoTiFy']);
+      const albums = spotify.album.getAlbums(['idGeradoPeLoSpoTiFy', 'outroIdGeradoPeLoSpoTiFy']);
 
       expect(albums.resolveValue).to.be.eql({ albums: ['nome1','nome2'] });
     });
 
   });
 
-  describe('getAlbumTracks', () => {
+  describe('getTracks', () => {
 
     it('should cal fetch method', () => {
-      const tracks = getAlbumTracks();
+      const tracks = spotify.album.getTracks();
       expect(stubedFetch).to.have.been.calledOnce;
     });
 
     it('should call fetch with the correct url', () => {
-      const tracks = getAlbumTracks('idGeradoPeLoSpoTiFy');
+      const tracks = spotify.album.getTracks('idGeradoPeLoSpoTiFy');
       expect(stubedFetch).to.have.been.calledWith('https://api.spotify.com/v1/albums/idGeradoPeLoSpoTiFy/tracks');
     });
 
     it('should return the correct data from the promise', () => {
       promise.resolves({ tracks: ['nome1','nome2'] });
-      const tracks = getAlbumTracks('idGeradoPeLoSpoTiFy');
+      const tracks = spotify.album.getTracks('idGeradoPeLoSpoTiFy');
 
       expect(tracks.resolveValue).to.be.eql({ tracks: ['nome1','nome2'] });
     });
