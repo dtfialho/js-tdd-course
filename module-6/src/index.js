@@ -1,16 +1,11 @@
 /* global fetch */
 
-import {
-  search,
-  searchAlbums,
-  searchArtists,
-  searchTracks,
-  searchPlaylists,
-} from './search';
+import search from './search';
 
 import album from './album';
 
 import { API_URL } from './config';
+import { toJSON } from './utils';
 
 // module.exports = {
 //   search,
@@ -29,6 +24,7 @@ export default class SpotifyWrapper {
     this.token = options.token;
 
     this.album = album.bind(this)();
+    this.search = search.bind(this)();
   }
 
   request(url) {
@@ -38,6 +34,6 @@ export default class SpotifyWrapper {
       },
     };
 
-    return fetch(url, headers);
+    return fetch(url, headers).then(toJSON);
   }
 }
