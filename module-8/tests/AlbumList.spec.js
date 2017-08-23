@@ -113,10 +113,10 @@ describe('AlbumList', () => {
   });
 
   it('should create and append when more than 1 album', () => {
-    const element2 = document.createElement('div');
-    renderAlbums(data2, element2);
+    const element = document.createElement('div');
+    renderAlbums(data2, element);
 
-    expect(element2.innerHTML).to.be.eql(markup2);
+    expect(element.innerHTML).to.be.eql(markup2);
   });
 
 });
