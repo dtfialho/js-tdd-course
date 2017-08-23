@@ -1,17 +1,14 @@
 import spotify from './Spotify';
-import renderAlbums from './AlbumList';
 import renderAlbumInfo from './AlbumInfo';
 import renderAlbumTracks from './AlbumTracks';
+import searchEnterTrigger from './SearchTrigger';
 
-const albums = spotify.search.albums('AC/DC');
-const albumList = document.getElementById('album-list');
+searchEnterTrigger();
 
 const album = spotify.album.getAlbum('6mUdeDZCsExyJLMdAfDuwh');
 const albumInfo = document.getElementById('album-info');
 
 const albumTracks = document.getElementById('album-tracks');
-
-albums.then(data => renderAlbums(data.albums.items, albumList));
 
 album
   .then(data => renderAlbumInfo(data, albumInfo))
