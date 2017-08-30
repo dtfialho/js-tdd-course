@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "clear": "rimraf lib",
-    "build": "npm run clear && ./node_modules/.bin/babel --out-dir lib src",
+    "b": "./node_modules/.bin/babel --out-dir lib src",
+    "build": "npm run clear && npm run b",
     "build:watch": "npm run build -- --watch",
     "lint": "./node_modules/.bin/eslint src/*.js",
     "prepush": "npm run lint",
