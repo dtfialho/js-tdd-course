@@ -83,4 +83,16 @@ describe('<FullHeader />', () => {
         });
     });
 
+    context('bgImg', () => {
+        it('should have background-image empty when none is passed', () => {
+            const wrapper = shallow(<FullHeader />);
+            expect(wrapper).to.have.style('background-image').equal('url()');
+        });
+
+        it('should have background-image equals to bg.jpg when it is passed', () => {
+            const wrapper = shallow(<FullHeader bgImg="bg.jpg" />);
+            expect(wrapper).to.have.style('background-image').equal('url(bg.jpg)');
+        });
+    });
+
 });
