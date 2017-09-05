@@ -2,7 +2,7 @@ import React from 'react';
 import FullHeader from '../src/Main'; // This is our component
 import { storiesOf } from '@storybook/react';
 
-storiesOf('<FullHeader />', module)
+storiesOf('<FullHeader/>', module)
     .add('with title', () => {
         <FullHeader title='TDD' />
     })
